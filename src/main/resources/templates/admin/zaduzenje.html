@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista zaduženja</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/zaduzenje.css}" type="text/css">
+
+</head>
+<body>
+<header>
+    <h1>Lista zaduženja</h1>
+    <nav>
+        <ul>
+            <a class="options-btn" th:href="@{/admin_home}">Početna</a>
+            <a class="options-btn"th:href="@{/knjige}">Prikaz knjiga</a>
+            <a class="options-btn" th:href="@{/korisnici}">Prikaz korisnika</a>
+            <a class="options-btn" th:href="@{/zaduzenja/nova}">Dodaj novo zaduženje</a>
+        </ul>
+
+    </nav>
+</header>
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Korisnik</th>
+            <th>Knjiga</th>
+            <th>Datum zaduženja</th>
+            <th>Datum vraćanja</th>
+            <th>Opcije</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="zaduzenje : ${zaduzenja}">
+            <td th:text="${zaduzenje.id}"></td>
+            <td th:text="${zaduzenje.korisnik.ime} + ' ' + ${zaduzenje.korisnik.prezime}"></td>
+            <td th:text="${zaduzenje.knjiga.naslov}"></td>
+            <td th:text="${zaduzenje.datumZaduzenja}"></td>
+            <td th:text="${zaduzenje.datumVracanja}"></td>
+            <td>
+                <a class="optionss-btn" th:href="@{/zaduzenja/izmijeni/{id}(id=${zaduzenje.id})}">Izmijeni</a>
+
+            </td>
+            <td>
+                <span th:text="${zaduzenje.status}"></span>
+                <div th:if="${zaduzenje.status == 'IZNAJMLJENO'}">
+                    <form th:action="@{/zaduzenja/vrati/{id}(id=${zaduzenje.id})}" method="post">
+                        <button type="submit">Označi kao vraćeno</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

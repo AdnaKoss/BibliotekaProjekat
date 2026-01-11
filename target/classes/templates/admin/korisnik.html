@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Korisnici</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/korisnik-page.css}" type="text/css">
+</head>
+<body>
+
+<header>
+    <h1>Lista korisnika</h1>
+</header>
+
+<main class="custom-margin">
+    <div class="card">
+        <nav class="traka">
+            <div class="informacije">
+                <a class="options-btn" th:href="@{/knjige}">Prikaz knjiga</a>
+                <a class="options-btn" th:href="@{/zaduzenja}">Prikaz zaduženja</a>
+                <a class="options-btn" th:href="@{/knjige/nova-knjiga}">Dodaj novu knjigu</a>
+                <a class="options-btn" th:href="@{/korisnici/novi}">Dodaj novog korisnika</a>
+            </div>
+        </nav>
+    </div>
+</main>
+
+<div class="lista custom-margin">
+    <h3>Lista korisnika</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Korisničko ime</th>
+            <th>Uloga</th>
+            <th>Opcije</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="korisnik : ${korisnici}">
+            <td th:text="${korisnik.id}"></td>
+            <td th:text="${korisnik.ime}"></td>
+            <td th:text="${korisnik.prezime}"></td>
+            <td th:text="${korisnik.username}"></td>
+            <td th:text="${korisnik.role}"></td>
+            <td>
+                <a class="optionss-btn" th:href="@{/korisnici/izmijeni/{id}(id=${korisnik.id})}">Izmijeni</a>
+                <form method="post" style="display:inline;" th:action="@{/korisnici/obrisi/{id}(id=${korisnik.id})}">
+                    <button class="optionss-btn" onclick="return confirm('Da li ste sigurni?')" type="submit">Obriši</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

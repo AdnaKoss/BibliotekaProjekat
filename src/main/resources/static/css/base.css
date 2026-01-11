@@ -1,0 +1,204 @@
+:root{
+    --bg: #EAFFDA;
+    --panel: #C7C7A6;
+    --primary: #363020;
+    --secondary: #605C4E;
+    --accent: #A49966;
+    --accent-dark: #4B3B47;
+
+    --text: #363020;
+    --text-soft: #605C4E;
+
+    --border: rgba(54, 48, 32, 0.25);
+    --shadow: 0 10px 25px rgba(54, 48, 32, 0.15);
+}
+
+*{ box-sizing: border-box; }
+
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, var(--bg) 0%, #f7ffe9 55%, #f1f7de 100%);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-dark) 100%);
+    color: white;
+    padding: 34px 18px;
+    text-align: center;
+    border-bottom: 4px solid var(--accent);
+}
+
+header h1{
+    margin: 0;
+    font-size: 2.6em;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+header p{
+    font-size: 1.15em;
+    margin-top: 10px;
+    color: rgba(255,255,255,0.85);
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 18px;
+    min-height: 60vh;
+    flex-wrap: wrap;
+    padding: 0 16px 30px;
+}
+
+.card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(199,199,166,0.75) 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    margin: 12px;
+    width: 320px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 16px 35px rgba(54, 48, 32, 0.22);
+}
+
+.traka{ width: 100%; }
+
+.informacije{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.traka form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 0;
+}
+
+.options-btn{
+    padding: 14px 26px;
+    background: linear-gradient(135deg, var(--accent) 0%, #b8ad7a 100%);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 30px;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    text-decoration: none;
+    margin: 2px 0;
+    text-align: center;
+    transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(54,48,32,0.18);
+}
+
+.options-btn:hover{
+    transform: translateY(-2px);
+    filter: brightness(0.95);
+    box-shadow: 0 12px 24px rgba(54,48,32,0.22);
+}
+
+.options-btn:active{
+    transform: translateY(1px);
+}
+
+.optionss-btn{
+    padding: 8px 18px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-dark) 100%);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 30px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    margin: 2px 0;
+    text-align: center;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    cursor: pointer;
+}
+
+.optionss-btn:hover{
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+.lista{
+    margin-top: 24px;
+    background: linear-gradient(135deg, rgba(199,199,166,0.95) 0%, rgba(234,255,218,0.9) 100%);
+    color: var(--text);
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    width: 95%;
+    max-width: 1200px;
+    box-shadow: var(--shadow);
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid var(--border);
+}
+
+th, td{
+    padding: 12px;
+    text-align: center;
+    border: 1px solid rgba(54,48,32,0.18);
+    color: var(--text);
+}
+
+th{
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-dark) 100%);
+    color: #fff;
+    font-weight: 800;
+}
+
+tr:nth-child(even){
+    background-color: rgba(234,255,218,0.55);
+}
+
+tr:hover{
+    background-color: rgba(164,153,102,0.18);
+}
+
+a{
+    color: var(--accent-dark);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 500px){
+    main{
+        height: auto;
+        min-height: auto;
+        padding-bottom: 20px;
+    }
+    .card{ width: 92%; }
+}
+
+/* base.css (dodaj na kraj) */
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }

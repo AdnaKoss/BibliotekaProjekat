@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="bs" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <link rel="stylesheet" th:href="@{/css/base.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+</head>
+<body class="auth-page">
+
+<main class="auth">
+    <section class="auth-card" aria-label="Prijava">
+        <div class="auth-brand">
+            <div class="brand-mark" aria-hidden="true"></div>
+            <h1 class="auth-title">Prijava</h1>
+            <p class="auth-subtitle">Prijavite se sa svojim korisničkim podacima</p>
+        </div>
+
+        <form method="post" th:action="@{/login}" class="auth-form" autocomplete="on">
+            <!-- CSRF token -->
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+            <div class="field">
+                <label for="username">Korisničko ime</label>
+                <input id="username" name="username" required type="text" placeholder="Unesite korisničko ime" />
+            </div>
+
+            <div class="field">
+                <label for="password">Lozinka</label>
+                <input id="password" name="password" required type="password" placeholder="Unesite lozinku" />
+            </div>
+
+            <button type="submit" class="primary-btn">Prijava</button>
+
+            <div class="auth-messages">
+                <p class="msg msg-error" th:if="${param.error}">Pogrešno korisničko ime ili lozinka!</p>
+                <p class="msg msg-success" th:if="${param.logout}">Uspješno ste se odjavili.</p>
+            </div>
+        </form>
+
+        <div class="auth-footnote">
+            <span>Zaštićena prijava • Fakultetski projekat</span>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>

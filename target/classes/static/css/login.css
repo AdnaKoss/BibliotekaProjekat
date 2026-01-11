@@ -1,0 +1,229 @@
+/* login.css */
+:root{
+    /* PAPER / BOOK THEME */
+    --bg: #F5F1EB;
+    --panel: #EFE9E1;
+
+    --primary: #5A3E2B;        /* dark brown */
+    --secondary: #8B6B4F;      /* warm wood */
+    --accent: #8B6B4F;
+    --accent-dark: #4A3324;
+
+    --text: #2B2B2B;           /* ink black */
+    --border: #D8CFC4;
+
+    /* Apple-ish efekti */
+    --glass: rgba(255,255,255,0.6);
+    --glass-strong: rgba(255,255,255,0.8);
+    --stroke: rgba(216,207,196,0.8);
+
+    --shadow-1: 0 20px 60px rgba(0,0,0,0.12);
+    --shadow-2: 0 10px 28px rgba(0,0,0,0.10);
+
+    --ring: rgba(139,107,79,0.35);
+}
+
+
+body.auth-page{
+    font-family: Georgia, serif;
+    color: var(--text);
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(900px 600px at 15% 10%, #FFFFFF 0%, transparent 60%),
+        radial-gradient(800px 500px at 85% 20%, #EFE6DA 0%, transparent 55%),
+        linear-gradient(135deg, #F9F6F2 0%, #F5F1EB 60%, #EFE9E1 100%);
+}
+
+
+/* centriranje */
+.auth{
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 28px 16px;
+}
+
+/* card */
+.auth-card{
+    width: min(520px, 92vw);
+    border-radius: 22px;
+    background: linear-gradient(180deg, var(--glass-strong) 0%, rgba(199,199,166,0.35) 100%);
+    border: 1px solid var(--stroke);
+    box-shadow: var(--shadow-1);
+    position: relative;
+    overflow: hidden;
+    padding: 30px 28px 22px;
+    backdrop-filter: blur(12px);
+}
+
+/* suptilni highlight gore */
+.auth-card::before{
+    content:"";
+    position:absolute;
+    inset: -2px -2px auto -2px;
+    height: 120px;
+    background: radial-gradient(700px 140px at 50% 0%, rgba(255,255,255,0.65), rgba(255,255,255,0));
+    pointer-events:none;
+}
+
+/* brand area */
+.auth-brand{
+    text-align: center;
+    padding: 6px 6px 18px;
+}
+
+.brand-mark{
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 14px;
+    border-radius: 16px;
+
+    background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,0.35), rgba(255,255,255,0)),
+        url("/css/book.png");
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    box-shadow: var(--shadow-2);
+    position: relative;
+}
+
+
+
+
+
+/* naslov + podnaslov */
+.auth-title{
+    margin: 0;
+    font-size: clamp(34px, 4vw, 44px);
+    letter-spacing: 0.2px;
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.auth-subtitle{
+    margin: 10px 0 0;
+    color: var(--secondary);
+    font-size: 15px;
+    line-height: 1.35;
+    opacity: 0.95;
+}
+
+/* form */
+.auth-form{
+    margin-top: 8px;
+    display: grid;
+    gap: 14px;
+}
+
+/* polja */
+.field{
+    display: grid;
+    gap: 8px;
+}
+
+.field label{
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(54,48,32,0.92);
+}
+
+/* inputi: Apple-ish čistina */
+.auth-form input[type="text"],
+.auth-form input[type="password"]{
+    width: 100%;
+    padding: 14px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(54,48,32,0.18);
+    background: rgba(234,255,218,0.55);
+    color: var(--text);
+    outline: none;
+    transition: box-shadow 0.18s ease, border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+    font-family: Georgia, serif;
+    font-size: 16px;
+}
+
+.auth-form input::placeholder{
+    color: rgba(96,92,78,0.70);
+}
+
+.auth-form input:focus{
+    border-color: rgba(164,153,102,0.92);
+    box-shadow: 0 0 0 5px var(--ring);
+    background: rgba(234,255,218,0.70);
+}
+
+/* primary button */
+.primary-btn{
+    margin-top: 6px;
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-dark) 100%);
+    color: #fff;
+    cursor: pointer;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    box-shadow: 0 12px 26px rgba(54,48,32,0.18);
+    transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease;
+}
+
+.primary-btn:hover{
+    transform: translateY(-2px);
+    filter: brightness(1.03);
+    box-shadow: 0 16px 34px rgba(54,48,32,0.22);
+}
+
+.primary-btn:active{
+    transform: translateY(0px);
+    filter: brightness(0.98);
+}
+
+/* poruke */
+.auth-messages{
+    margin-top: 2px;
+    min-height: 22px;
+}
+
+.msg{
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+.msg-error{
+    color: #8b1f1f;
+    font-weight: 700;
+}
+
+.msg-success{
+    color: #1f7a2a;
+    font-weight: 700;
+}
+
+/* footnote */
+.auth-footnote{
+    margin-top: 18px;
+    text-align: center;
+    color: rgba(96,92,78,0.85);
+    font-size: 12.5px;
+}
+
+/* responsive */
+@media (max-width: 520px){
+    .auth-card{
+        padding: 24px 18px 18px;
+        border-radius: 18px;
+    }
+    .brand-mark{
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+    }
+}

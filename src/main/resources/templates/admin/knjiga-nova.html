@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dodaj novu knjigu</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/base.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/knjiga-nova.css}" type="text/css">
+</head>
+<body>
+
+<main>
+    <div class="form-container">
+        <h1>Dodaj novu knjigu</h1>
+        <form action="#" method="post" th:action="@{/knjige/nova-knjiga}" th:object="${knjiga}">
+            <label for="naslov">Naslov:</label>
+            <input id="naslov" required th:field="*{naslov}" type="text"/>
+            <span th:errors="*{naslov}" th:if="${#fields.hasErrors('naslov')}"></span>
+
+            <label for="autor">Autor:</label>
+            <input id="autor" required th:field="*{autor}" type="text"/>
+            <span th:errors="*{autor}" th:if="${#fields.hasErrors('autor')}"></span>
+            <label for="ukupnoPrimjeraka">Broj primjeraka:</label>
+            <input type="number" id="ukupnoPrimjeraka" th:field="*{ukupnoPrimjeraka}" min="1" required />
+
+            <button type="submit">Dodaj knjigu</button>
+        </form>
+        <a class="cancelbtn" th:href="@{/knjige}">Nazad na listu knjiga</a>
+    </div>
+</main>
+
+</body>
+</html>

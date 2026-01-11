@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj novo zaduženje</title>
+    <link rel="stylesheet" th:href="@{/css/zaduzenje-izmjena.css}" type="text/css">
+</head>
+<body>
+
+<main>
+    <div class="form-shell">
+
+        <div class="form-nav">
+            <a class="options-btn" th:href="@{/zaduzenja}">← Nazad na zaduženja</a>
+            <a class="options-btn" th:href="@{/admin_home}">Početna</a>
+        </div>
+
+        <h1>Dodaj novo zaduženje</h1>
+
+        <form th:action="@{/zaduzenja/nova}" method="post" th:object="${zaduzenje}">
+            <label for="knjiga">Knjiga:</label>
+            <select id="knjiga" required th:field="*{knjiga.id}">
+                <option th:each="k : ${knjige}"
+                        th:value="${k.id}"
+                        th:text="${k.naslov}">
+                </option>
+            </select>
+
+            <label for="korisnik">Korisnik:</label>
+            <select id="korisnik" required th:field="*{korisnik.id}">
+                <option th:each="u : ${korisnici}"
+                        th:value="${u.id}"
+                        th:text="${u.ime} + ' ' + ${u.prezime}">
+                </option>
+            </select>
+
+            <label for="datumZaduzenja">Datum zaduženja:</label>
+            <input id="datumZaduzenja" type="date" required th:field="*{datumZaduzenja}"/>
+
+            <button type="submit">Dodaj zaduženje</button>
+        </form>
+
+    </div>
+</main>
+
+</body>
+</html>

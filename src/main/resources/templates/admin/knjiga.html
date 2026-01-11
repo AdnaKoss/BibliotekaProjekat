@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista knjiga</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/knjiga.css}" type="text/css">
+</head>
+<body>
+
+<header>
+    <h1>Upravljanje Knjigama</h1>
+</header>
+
+<main class="custom-margin">
+    <div class="card">
+        <nav class="traka">
+            <div class="informacije">
+                <a class="options-btn" th:href="@{/admin_home}">Početna</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="card">
+        <nav class="traka">
+            <div class="informacije">
+                <a class="options-btn" th:href="@{/knjige/nova-knjiga}">Dodaj novu knjigu</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="card">
+        <nav class="traka">
+            <div class="informacije">
+                <a class="options-btn" th:href="@{/korisnici}">Prikaz korisnika</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="card">
+        <nav class="traka">
+            <div class="informacije">
+                <a class="options-btn" th:href="@{/zaduzenja}">Prikaz zaduženja</a>
+            </div>
+        </nav>
+    </div>
+</main>
+
+<!-- ✅ PORUKE -->
+<div class="custom-margin" style="max-width: 1100px; margin-left:auto; margin-right:auto;">
+    <p th:if="${errorMessage}" th:text="${errorMessage}"
+       style="color:#c0392b; font-weight:600; margin: 12px 0;"></p>
+
+    <p th:if="${successMessage}" th:text="${successMessage}"
+       style="color:#1e8449; font-weight:600; margin: 12px 0;"></p>
+</div>
+
+<!-- ✅ POPUP (ako želiš baš alert) -->
+<script th:if="${errorMessage}">
+    alert('[[${errorMessage}]]');
+</script>
+
+<div class="lista custom-margin">
+    <h3>Popis bibliotečke građe</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Naslov</th>
+            <th>Autor</th>
+            <th>Ukupno primjeraka</th>
+            <th>Dostupno primjeraka</th>
+            <th>Opcije</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="knjiga : ${knjige}">
+            <td th:text="${knjiga.id}"></td>
+            <td th:text="${knjiga.naslov}"></td>
+            <td th:text="${knjiga.autor}"></td>
+            <td th:text="${knjiga.ukupnoPrimjeraka}"></td>
+            <td th:text="${knjiga.dostupnoPrimjeraka}"></td>
+            <td>
+                <a class="optionss-btn" th:href="@{/knjige/edit/{id}(id=${knjiga.id})}">Izmijeni</a>
+
+                <form method="post" style="display:inline;"
+                      th:action="@{/knjige/obrisi/{id}(id=${knjiga.id})}">
+                    <button class="optionss-btn"
+                            onclick="return confirm('Da li ste sigurni? Ako knjiga ima zaduženja, neće se moći obrisati.')"
+                            type="submit">Obriši</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

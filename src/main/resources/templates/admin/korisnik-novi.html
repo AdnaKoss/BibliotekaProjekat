@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj novog korisnika</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/korisnik-novi.css}" type="text/css">
+</head>
+<body>
+<main>
+    <div class="form-container">
+        <h1>Dodaj novog korisnika</h1>
+
+        <form method="post" th:action="@{/korisnici/novi}" th:object="${korisnik}">
+            <div>
+                <label for="ime">Ime:</label>
+                <input id="ime" required th:field="*{ime}" type="text"/>
+                <p th:errors="*{ime}" th:if="${#fields.hasErrors('ime')}"></p>
+            </div>
+
+            <div>
+                <label for="prezime">Prezime:</label>
+                <input id="prezime" required th:field="*{prezime}" type="text"/>
+                <p th:errors="*{prezime}" th:if="${#fields.hasErrors('prezime')}"></p>
+            </div>
+
+            <div>
+                <label for="username">Korisničko ime:</label>
+                <input id="username" required th:field="*{username}" type="text"/>
+                <p th:errors="*{username}" th:if="${#fields.hasErrors('username')}"></p>
+            </div>
+
+            <div>
+                <label for="password">Lozinka:</label>
+                <input id="password" required th:field="*{password}" type="password"/>
+                <p th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></p>
+            </div>
+
+            <div>
+                <label for="role">Uloga:</label>
+                <select id="role" th:field="*{role}">
+                    <option value="ROLE_USER">Korisnik</option>
+                    <option value="ROLE_ADMIN">Administrator</option>
+
+                </select>
+                <p th:errors="*{role}" th:if="${#fields.hasErrors('role')}"></p>
+            </div>
+
+            <button type="submit">Dodaj korisnika</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>

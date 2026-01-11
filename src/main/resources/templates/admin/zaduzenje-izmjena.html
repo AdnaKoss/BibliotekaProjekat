@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Izmjena zaduženja</title>
+    <link rel="stylesheet" th:href="@{/css/zaduzenje-izmjena.css}" type="text/css">
+</head>
+<body>
+
+<main>
+    <div class="form-shell">
+
+        <div class="form-nav">
+            <a class="options-btn" th:href="@{/zaduzenja}">← Lista zaduženja</a>
+            <a class="options-btn" th:href="@{/admin_home}">Početna</a>
+            <a class="options-btn" th:href="@{/knjige}">Knjige</a>
+            <a class="options-btn" th:href="@{/korisnici}">Korisnici</a>
+        </div>
+
+        <h1>Izmjena zaduženja</h1>
+
+        <form th:action="@{/zaduzenja/izmijeni/{id}(id=${zaduzenje.id})}"
+              method="post"
+              th:object="${zaduzenje}">
+
+            <label for="knjiga">Knjiga:</label>
+            <select id="knjiga" required th:field="*{knjiga.id}">
+                <option th:each="k : ${knjige}"
+                        th:value="${k.id}"
+                        th:text="${k.naslov}">
+                </option>
+            </select>
+
+            <label for="korisnik">Korisnik:</label>
+            <select id="korisnik" required th:field="*{korisnik.id}">
+                <option th:each="u : ${korisnici}"
+                        th:value="${u.id}"
+                        th:text="${u.ime} + ' ' + ${u.prezime}">
+                </option>
+            </select>
+
+            <label for="datumZaduzenja">Datum zaduženja:</label>
+            <input id="datumZaduzenja" required th:field="*{datumZaduzenja}" type="date"/>
+
+            <label for="datumVracanja">Datum vraćanja:</label>
+            <input id="datumVracanja" th:field="*{datumVracanja}" type="date"/>
+
+            <button type="submit">Sačuvaj izmjene</button>
+        </form>
+
+    </div>
+</main>
+
+</body>
+</html>

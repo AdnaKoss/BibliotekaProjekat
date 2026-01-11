@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Početna strana</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/home-page.css}" type="text/css">
+
+</head>
+<body>
+<header>
+    <h1>Dobrodošli u sistem biblioteke!</h1>
+</header>
+<span class="opcija">Molimo prijavite se ili napravite novi račun</span>
+<main>
+    <div class="card">
+        <nav class="traka">
+            <div class="informacije">
+                <a class="options-btn" th:href="@{/login}">Prijava</a>
+                <a class="options-btn" th:href="@{/korisnici/novi}">Novi račun</a>
+            </div>
+        </nav>
+    </div>
+</main>
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista zaduženja</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/zaduzenje.css}" type="text/css">
+
+</head>
+<body>
+<header>
+    <h1>Lista Vaših zaduženja</h1>
+    <nav>
+        <form action="/logout" method="post">
+
+            <input name="_csrf" th:value="${_csrf.token}" type="hidden"/>
+            <button class="options-btn" type="submit">Odjavi se</button>
+        </form>
+    </nav>
+</header>
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Korisnik</th>
+            <th>Knjiga</th>
+            <th>Datum zaduženja</th>
+            <th>Datum vraćanja</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="zaduzenje : ${zaduzenja}">
+            <td th:text="${zaduzenje.id}"></td>
+            <td th:text="${zaduzenje.korisnik.ime} + ' ' + ${zaduzenje.korisnik.prezime}"></td>
+            <td th:text="${zaduzenje.knjiga.naslov}"></td>
+            <td th:text="${zaduzenje.datumZaduzenja}"></td>
+            <td th:text="${zaduzenje.datumVracanja}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

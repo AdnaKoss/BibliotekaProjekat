@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Uredi knjigu</title>
+    <link rel="stylesheet" th:href="@{/css/knjiga-izmjena.css}" type="text/css">
+</head>
+<body>
+<header>
+    <h1>Uredi knjigu</h1>
+    <nav>
+        <ul>
+            <a class="options-btn" th:href="@{/admin_home}">Početna</a>
+            <a class="options-btn" th:href="@{/knjige}">Prikaz knjiga</a>
+            <a class="options-btn" th:href="@{/korisnici}">Prikaz korisnika</a>
+            <a class="options-btn" th:href="@{/zaduzenja}">Lista zaduženja</a>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <form th:action="@{/knjige/edit/{id}(id=${knjiga.id})}" th:object="${knjiga}" method="post">
+        <label for="naslov">Naslov knjige:</label>
+        <input id="naslov" name="naslov" type="text" required
+               th:field="*{naslov}" placeholder="Unesite naslov knjige">
+        <br/>
+
+        <label for="autor">Autor knjige:</label>
+        <input id="autor" name="autor" type="text" required
+               th:field="*{autor}" placeholder="Unesite autora knjige">
+        <br/>
+        <label for="ukupnoPrimjeraka">Ukupno primjeraka:</label>
+        <input id="ukupnoPrimjeraka" name="ukupnoPrimjeraka" type="number" min="0" required
+               th:field="*{ukupnoPrimjeraka}" placeholder="Unesite broj dostupnih primjeraka">
+        <br/>
+        <label for="dostupnoPrimjeraka">Dostupno primjeraka:</label>
+        <input id="dostupnoPrimjeraka" name="dostupnoPrimjeraka" type="number" min="0" required
+               th:field="*{dostupnoPrimjeraka}" placeholder="Unesite broj dostupnih primjeraka">
+        <br/>
+
+        <button type="submit">Spremi izmjene</button>
+        <a th:href="@{/knjige}" class="cancel-btn">Odustani</a>
+    </form>
+</main>
+</body>
+</html>

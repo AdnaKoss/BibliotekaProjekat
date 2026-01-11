@@ -1,0 +1,242 @@
+/* home-page.css — iCloud-like, centered circular menu */
+
+:root{
+  --bg: #FFFFFF;
+  --text: #111827;
+
+  --indigo: #6366F1;  /* primary accent */
+  --green:  #22C55E;  /* secondary accent */
+  --orange: #F97316;  /* CTA */
+
+  --border: rgba(17,24,39,0.12);
+  --shadow: 0 24px 60px rgba(17,24,39,0.14);
+  --shadow2: 0 14px 30px rgba(17,24,39,0.12);
+  --ring: rgba(99,102,241,0.28);
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+
+  font-family: ui-sans-serif, system-ui, -apple-system, "SF Pro Display", "SF Pro Text",
+               "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+
+  /* white background + soft orange glow */
+  background:
+    radial-gradient(900px 520px at 50% 70%, rgba(249,115,22,0.22), transparent 60%),
+    linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
+}
+
+
+
+/* header: clean + airy */
+header{
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  display: flex;
+  justify-content: center;
+
+  /* bilo: 22px 16px 8px */
+  padding: 14px 16px 6px;
+}
+
+
+header h1{
+  margin: 0;
+  padding: 14px 18px;
+
+  width: min(820px, calc(100vw - 32px));
+  text-align: center;
+
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: 850;
+  letter-spacing: -0.4px;
+  color: var(--text);
+
+  /* glass card look */
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(17,24,39,0.10);
+  border-radius: 18px;
+  box-shadow: 0 18px 50px rgba(17,24,39,0.12);
+  backdrop-filter: blur(12px);
+}
+
+
+/* hint text */
+.opcija{
+  display: block;
+  text-align: center;
+
+  /* BLIŽE KRUGU */
+  margin: 6px auto 14px;
+
+  width: min(520px, calc(100vw - 32px));
+  padding: 12px 16px;
+
+  font-size: 17px;        /* malo veći */
+  font-weight: 500;       /* nije bold */
+  letter-spacing: -0.1px;
+
+  color: rgba(17,24,39,0.75);
+
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(17,24,39,0.08);
+  border-radius: 14px;
+
+  box-shadow: 0 10px 26px rgba(17,24,39,0.08);
+  backdrop-filter: blur(10px);
+}
+
+
+
+/* main: center everything */
+main{
+  min-height: calc(100vh - 92px);
+  display: grid;
+  place-items: center;
+  padding: 12px 12px 16px;
+}
+
+/* make the "card" a circle */
+.card{
+  width: 420px;
+  height: 420px;
+  max-width: 92vw;
+  max-height: 92vw;
+
+  border-radius: 999px;
+  border: 1px solid rgba(17,24,39,0.08);
+
+  /* jači glass feel */
+  background:
+    radial-gradient(140px 140px at 30% 25%, rgba(99,102,241,0.14), transparent 60%),
+    radial-gradient(170px 170px at 70% 70%, rgba(34,197,94,0.12), transparent 62%),
+    radial-gradient(160px 160px at 40% 78%, rgba(249,115,22,0.12), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.78));
+
+  box-shadow:
+    0 30px 80px rgba(17,24,39,0.14),
+    0 0 0 10px rgba(255,255,255,0.35);
+
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+}
+
+
+/* subtle top shine */
+.card::before{
+  content:"";
+  position:absolute;
+  inset: -40px -40px auto -40px;
+  height: 160px;
+  background: radial-gradient(700px 160px at 50% 0%, rgba(255,255,255,0.85), rgba(255,255,255,0));
+  pointer-events: none;
+}
+
+/* center inner nav */
+.traka{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.informacije{
+  width: 78%;
+  display: grid;
+  gap: 12px;
+  align-items: center;
+}
+
+/* shared button style */
+.options-btn{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 14px 16px;
+
+  border-radius: 16px;
+  border: 1px solid rgba(17,24,39,0.10);
+  background: rgba(255,255,255,0.85);
+
+  color: var(--text);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.15px;
+
+  box-shadow: var(--shadow2);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, filter 0.16s ease;
+  cursor: pointer;
+}
+
+/* little chevron */
+.options-btn::after{
+  content: "›";
+  font-size: 18px;
+  opacity: 0.55;
+  transform: translateY(-1px);
+}
+
+/* hover + focus ring (iOS vibe) */
+.options-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px rgba(17,24,39,0.14);
+  border-color: rgba(99,102,241,0.35);
+  filter: brightness(1.01);
+}
+
+.options-btn:active{
+  transform: translateY(0px) scale(0.99);
+  box-shadow: 0 12px 26px rgba(17,24,39,0.12);
+}
+
+/* keyboard focus */
+.options-btn:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 6px var(--ring), var(--shadow2);
+  border-color: rgba(99,102,241,0.55);
+}
+
+/* Color accents per item (nice iCloud-ish lines) */
+a.options-btn:nth-of-type(1){
+  border-left: 6px solid rgba(99,102,241,0.85); /* indigo */
+}
+a.options-btn:nth-of-type(2){
+  border-left: 6px solid rgba(34,197,94,0.85);  /* green */
+}
+a.options-btn:nth-of-type(3){
+  border-left: 6px solid rgba(249,115,22,0.90); /* orange */
+}
+
+/* Logout button as CTA orange */
+.informacije form{ margin: 0; }
+
+.informacije form .options-btn{
+  width: 100%;
+  border: 1px solid rgba(249,115,22,0.22);
+  background: linear-gradient(135deg, rgba(249,115,22,0.16), rgba(249,115,22,0.08));
+  border-left: 6px solid rgba(249,115,22,0.95);
+}
+
+.informacije form .options-btn:hover{
+  border-color: rgba(249,115,22,0.38);
+}
+
+/* Responsive */
+@media (max-width: 460px){
+  .card{
+    width: 360px;
+    height: 360px;
+  }
+  .informaije{ width: 84%; }
+  .options-btn{ font-size: 14.5px; padding: 13px 14px; }
+}
