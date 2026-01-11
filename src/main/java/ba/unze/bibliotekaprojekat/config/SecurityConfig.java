@@ -29,7 +29,6 @@ public class SecurityConfig {
             KorisnikModel k = korisnikRepo.findByUsername(username)
                     .orElseThrow(() -> new UsernameNotFoundException("Korisnik nije pronađen: " + username));
 
-            // role u bazi treba biti "ROLE_ADMIN" ili "ROLE_USER"
             return org.springframework.security.core.userdetails.User.builder()
                     .username(k.getUsername())
                     .password(k.getPassword()) // već je hash u bazi
