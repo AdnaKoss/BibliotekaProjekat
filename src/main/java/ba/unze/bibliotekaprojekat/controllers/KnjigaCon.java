@@ -22,7 +22,6 @@ public class KnjigaCon {
     @Autowired
     private ZaduzenjeRepo zaduzenjeRepository;
 
-    // ✅ Prikaz knjiga + poruke error/success
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
     public String prikaziKnjige(Model model,
@@ -49,7 +48,6 @@ public class KnjigaCon {
         return "admin/knjiga-nova";
     }
 
-    // ✅ dodavanje nove knjige (ako već postoji naslov+autor: povećaj primjerke)
     @PostMapping("/nova-knjiga")
     @PreAuthorize("hasRole('ADMIN')")
     public String dodajKnjigu(@Valid @ModelAttribute("knjiga") KnjigaModel novaKnjiga,
@@ -60,7 +58,6 @@ public class KnjigaCon {
             return "admin/knjiga-nova";
         }
 
-        // Ako nije unesen dostupno, postavi da = ukupno
         if (novaKnjiga.getDostupnoPrimjeraka() == null) {
             novaKnjiga.setDostupnoPrimjeraka(novaKnjiga.getUkupnoPrimjeraka());
         }
@@ -148,12 +145,10 @@ public class KnjigaCon {
             return "redirect:/knjige?error=Knjiga%20ne%20postoji.";
         }
 
-        // 1) Lijepa provjera prije brisanja
         if (zaduzenjeRepository.existsByKnjigaId(id)) {
             return "redirect:/knjige?error=Nemogu%C4%87e%20izbrisati%20knjigu%20jer%20ima%20zadu%C5%BEenja.";
         }
 
-        // 2) Fallback - čak i da provjera omaši, nema bijele stranice
         try {
             knjigaRepository.deleteById(id);
         } catch (Exception ex) {
