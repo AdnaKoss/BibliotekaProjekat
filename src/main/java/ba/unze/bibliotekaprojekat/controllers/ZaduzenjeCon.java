@@ -99,7 +99,6 @@ public class ZaduzenjeCon {
             return "admin/zaduzenja-nova";
         }
 
-        // Učitaj prave entitete po ID-u (zbog *{knjiga.id} i *{korisnik.id})
         Long knjigaId = zaduzenje.getKnjiga().getId();
         Long korisnikId = zaduzenje.getKorisnik().getId();
 
@@ -109,34 +108,27 @@ public class ZaduzenjeCon {
         KorisnikModel korisnik = korisnikRepository.findById(korisnikId)
                 .orElseThrow(() -> new RuntimeException("Korisnik nije pronađen"));
 
-        // provjera dostupnosti knjige
         if (knjiga.getDostupnoPrimjeraka() <= 0) {
             throw new RuntimeException("Nema dostupnih primjeraka knjige: " + knjiga.getNaslov());
         }
 
-        // umanji dostupno
         knjiga.setDostupnoPrimjeraka(knjiga.getDostupnoPrimjeraka() - 1);
         knjigaRepository.save(knjiga);
 
-        // setuj veze
         zaduzenje.setKnjiga(knjiga);
         zaduzenje.setKorisnik(korisnik);
 
-        // datum zaduzenja ako nije unesen
         if (zaduzenje.getDatumZaduzenja() == null) {
             zaduzenje.setDatumZaduzenja(LocalDate.now());
         }
 
-        // automatski datum vraćanja
         zaduzenje.setDatumVracanja(zaduzenje.getDatumZaduzenja().plusDays(15));
 
-        // status default je IZNAJMLJENO u modelu
         zaduzenjeRepository.save(zaduzenje);
 
         return "redirect:/zaduzenja";
     }
 
-    // ADMIN: izmjena zaduzenja (OVO TI JE FALILO)
     @PostMapping("/izmijeni/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public String sacuvajIzmjene(
